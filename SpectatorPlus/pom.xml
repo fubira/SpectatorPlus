@@ -55,7 +55,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.3</version>
+				<version>2.4.3</version>
 				<configuration>
 					<minimizeJar>true</minimizeJar>
 					<artifactSet>
@@ -87,10 +87,10 @@
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
-		<repository>
+		<!-- <repository>
 			<id>carrade-repo</id>
 			<url>http://depot.carrade.eu/maven2/</url>
-		</repository>
+		</repository> -->
 		<repository>
 			<id>zDevelopers</id>
 			<url>http://maven.carrade.eu/artifactory/snapshots</url>
@@ -101,7 +101,7 @@
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.11.2-R0.1-SNAPSHOT</version>
+			<version>1.12-R0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

@@ -42,7 +42,7 @@ public final class ArenasIO
 
 			if (!arenasSection.isConfigurationSection(arenaUUID))
 			{
-				PluginLogger.error(" → Not a configuration section. Skipped.");
+				PluginLogger.error(" -> Not a configuration section. Skipped.");
 				continue;
 			}
 

@@ -218,7 +218,7 @@ public class ManageArenasCommand extends Command
 
 		for (Arena arena : arenas)
 		{
-			String description = ChatColor.GOLD + " - " + ChatColor.RED + arena.getName() + ChatColor.GOLD + " ⋅ ";
+			String description = ChatColor.GOLD + " - " + ChatColor.RED + arena.getName() + ChatColor.GOLD + " * ";
 
 			if (arena.getLobby() != null)
 			{

@@ -220,7 +220,7 @@ public class SpectatorsInventoryManager
 	}
 
 	/**
-	 * Updates the newbie tips to display “(Right-click)” if the inventory is closed and “(Click)” if it is open.
+	 * Updates the newbie tips to display "(Right-click)" if the inventory is closed and "(Click)" if it is open.
 	 *
 	 * @param player The player to update.
 	 * @param isOpen {@code true} if the inventory is open.

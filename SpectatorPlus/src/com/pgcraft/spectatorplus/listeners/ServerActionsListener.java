@@ -81,7 +81,7 @@ public class ServerActionsListener implements Listener
 
 
 	/**
-	 * Saves the death message & location, if the “teleportation to the death point”
+	 * Saves the death message & location, if the "teleportation to the death point"
 	 * tool is enabled.
 	 */
 	@EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)

@@ -196,7 +196,7 @@ public class SpectateAPI
 	/**
 	 * Sets a toggle.
 	 *
-	 * DEPRECATED — does nothing.
+	 * DEPRECATED - does nothing.
 	 *
 	 * @param toggle The toggle to set.
 	 * @param value  The new value.

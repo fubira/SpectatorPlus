@@ -19,7 +19,7 @@ public final class SPUtils
 
 	/**
 	 * @param commandSender A command sender.
-	 * @return A name for this sender: the player name, or “Command block 'name'”, or “Console”.
+	 * @return A name for this sender: the player name, or "Command block 'name'", or "Console".
 	 */
 	public static String getName(CommandSender commandSender)
 	{
@@ -36,7 +36,7 @@ public final class SPUtils
 	/**
 	 * Returns the user-friendly name of the given effect.
 	 *
-	 * <p>As example, “SLOW_DIGGING” becomes “Mining Fatigue”.</p>
+	 * <p>As example, "SLOW_DIGGING" becomes "Mining Fatigue".</p>
 	 *
 	 * @param type The potion effect type.
 	 * @return An user-friendly name.
@@ -69,7 +69,7 @@ public final class SPUtils
 	}
 
 	/**
-	 * Converts a location into an user-friendly description: “world @ x,y,z”.
+	 * Converts a location into an user-friendly description: "world @ x,y,z".
 	 *
 	 * @param location The location to display.
 	 * @return An user-friendly representation of the location.

@@ -5,6 +5,9 @@
 
 package com.pgcraft.spectatorplus.spectators;
 
+import java.util.Collection;
+import java.util.UUID;
+
 import com.pgcraft.spectatorplus.SpectatorPlus;
 import com.pgcraft.spectatorplus.Toggles;
 import com.pgcraft.spectatorplus.arenas.Arena;
@@ -12,8 +15,7 @@ import com.pgcraft.spectatorplus.arenas.ArenaSetup;
 import com.pgcraft.spectatorplus.guis.TeleportationGUI;
 import com.pgcraft.spectatorplus.utils.Collisions;
 import com.pgcraft.spectatorplus.utils.SPUtils;
-import fr.zcraft.zlib.components.gui.Gui;
-import fr.zcraft.zlib.tools.players.ReducedDebugInfo;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -25,11 +27,12 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scoreboard.Scoreboard;
 
-import java.util.Collection;
-import java.util.UUID;
+import fr.zcraft.zlib.components.gui.Gui;
+import fr.zcraft.zlib.tools.players.ReducedDebugInfo;
 
 public class Spectator
 {
+	private SpectatorPlus p;
     private final UUID playerID;
 
 	private Boolean spectating = false;
@@ -58,8 +61,9 @@ public class Spectator
 	private Location deathLocation = null;
 
 
-	public Spectator(final UUID id)
+	public Spectator(SpectatorPlus plugin, final UUID id)
     {
+		p = plugin;
         playerID = id;
 	}
 
@@ -219,11 +223,11 @@ public class Spectator
 			{
 				if (Toggles.SPECTATORS_SEE_OTHERS.get() && SpectatorPlus.get().getPlayerData(other).isSpectating())
 				{
-					player.showPlayer(other);
+					player.showPlayer(p, other);
 				}
 				else
 				{
-					other.hidePlayer(player);
+					other.hidePlayer(p, player);
 				}
 			}
 	    }

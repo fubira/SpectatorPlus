@@ -8,10 +8,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+import com.pgcraft.spectatorplus.SpectatorPlus;
+import com.pgcraft.spectatorplus.Toggles;
+import com.pgcraft.spectatorplus.guis.InventoryGUI;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.block.data.type.Door;
+import org.bukkit.block.data.type.Gate;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -24,6 +30,7 @@ import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
@@ -35,20 +42,13 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.event.player.PlayerUnleashEntityEvent;
 import org.bukkit.event.vehicle.VehicleDamageEvent;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.material.Gate;
 import org.bukkit.material.TrapDoor;
 import org.bukkit.util.Vector;
-
-import com.pgcraft.spectatorplus.SpectatorPlus;
-import com.pgcraft.spectatorplus.Toggles;
-import com.pgcraft.spectatorplus.guis.InventoryGUI;
 
 import fr.zcraft.zlib.components.events.FutureEventHandler;
 import fr.zcraft.zlib.components.events.WrappedEvent;
@@ -373,9 +373,12 @@ public class SpectatorsInteractionsListener implements Listener
 						clonedEntity.setTicksLived(ev.getEntity().getTicksLived());
 						clonedEntity.setFallDistance(ev.getEntity().getFallDistance());
 						clonedEntity.setBounce(ev.getEntity().doesBounce());
-						if (ev.getEntity().getPassenger() != null)
+						if (ev.getEntity().getPassengers() != null)
 						{
-							clonedEntity.setPassenger(ev.getEntity().getPassenger()); // hey, why not
+							for (Entity passenger : ev.getEntity().getPassengers())
+							{
+								clonedEntity.addPassenger(passenger); // hey, why not
+							}
 						}
 
 						// Clones the effects
@@ -521,11 +524,15 @@ public class SpectatorsInteractionsListener implements Listener
 	 * Used to prevent spectators from picking up items.
 	 */
 	@EventHandler (priority = EventPriority.HIGHEST)
-	public void onPlayerPickupItem(final PlayerPickupItemEvent ev)
+	public void onPlayerPickupItem(final EntityPickupItemEvent ev)
 	{
-		if (p.getPlayerData(ev.getPlayer()).isSpectating())
+		if (ev.getEntityType() == EntityType.PLAYER)
 		{
-			ev.setCancelled(true);
+			Player player = (Player)ev.getEntity();
+			if (player != null && p.getPlayerData(player).isSpectating())
+			{
+				ev.setCancelled(true);
+			}
 		}
 	}
 
@@ -545,10 +552,10 @@ public class SpectatorsInteractionsListener implements Listener
 	{
 		if (p.getPlayerData(ev.getPlayer()).isSpectating() && ev.hasBlock())
 		{
-			final Material clickedType = ev.getClickedBlock().getType();
+			final Class<?> clickedType = ev.getClickedBlock().getType().data;
 
 			// Allows spectators to pass through doors.
-			if (clickedType == Material.WOODEN_DOOR || clickedType == Material.IRON_DOOR_BLOCK || clickedType == Material.FENCE_GATE)
+			if (clickedType == Door.class || clickedType == Gate.class)
 			{
 				Player spectator = ev.getPlayer();
 				Location doorLocation = ev.getClickedBlock()
@@ -556,13 +563,13 @@ public class SpectatorsInteractionsListener implements Listener
 						.setDirection(spectator.getLocation().getDirection());
 
 				int relativeHeight = 0;
-				if (clickedType == Material.WOODEN_DOOR || clickedType == Material.IRON_DOOR_BLOCK)
+				if (clickedType == Door.class)
 				{
-					Material belowBlockType = ev.getClickedBlock()
+					Class<?> belowBlockType = ev.getClickedBlock()
 							.getLocation().add(0, -1, 0)
-							.getBlock().getType();
+							.getBlock().getType().data;
 
-					if (belowBlockType == Material.WOODEN_DOOR || belowBlockType == Material.IRON_DOOR_BLOCK)
+					if (belowBlockType == Door.class)
 					{
 						// The spectator clicked the top part of the door.
 						relativeHeight = -1;
@@ -635,7 +642,7 @@ public class SpectatorsInteractionsListener implements Listener
 			}
 
 			// Allows spectators to pass through trap doors
-			else if (clickedType == Material.TRAP_DOOR)
+			else if (clickedType == Gate.class)
 			{
 				if (!((TrapDoor) ev.getClickedBlock().getState().getData()).isOpen())
 				{

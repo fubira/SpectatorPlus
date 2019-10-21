@@ -33,7 +33,6 @@ import fr.zcraft.zlib.tools.runners.RunTask;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.PluginManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -157,7 +156,7 @@ public class SpectatorPlus extends ZPlugin
 
 		if (spectator == null)
 		{
-			spectator = new Spectator(id);
+			spectator = new Spectator(this, id);
 			spectators.put(id, spectator);
 		}
 

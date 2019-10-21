@@ -11,7 +11,7 @@ import com.pgcraft.spectatorplus.guis.PlayerInventoryGUI;
 import com.pgcraft.spectatorplus.guis.SpectatorsToolsGUI;
 import com.pgcraft.spectatorplus.guis.TeleportationGUI;
 import com.pgcraft.spectatorplus.spectators.SpectatorMode;
-import fr.zcraft.zlib.components.gui.Gui;
+
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -28,6 +28,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import fr.zcraft.zlib.components.gui.Gui;
 
 
 public class SpectatorsInventoryListener implements Listener
@@ -63,7 +65,8 @@ public class SpectatorsInventoryListener implements Listener
 	{
 		if (ev.getRightClicked() instanceof Player && SpectatorPlus.get().getPlayerData(ev.getPlayer()).isSpectating())
 		{
-			if (ev.getPlayer().getItemInHand() != null && ev.getPlayer().getItemInHand().getItemMeta().getDisplayName().startsWith(SpectatorsInventoryManager.INSPECTOR_TITLE))
+			if (ev.getPlayer().getInventory().getItemInMainHand() != null
+					&& ev.getPlayer().getInventory().getItemInMainHand().getItemMeta().getDisplayName().startsWith(SpectatorsInventoryManager.INSPECTOR_TITLE))
 			{
 				handlePunch(ev.getPlayer(), (Player) ev.getRightClicked());
 			}
@@ -74,19 +77,19 @@ public class SpectatorsInventoryListener implements Listener
 	public void onPlayerPunchEntity(EntityDamageByEntityEvent ev)
 	{
 		if (ev.getDamager() instanceof Player && ev.getEntity() instanceof Player
-				&& ((Player) ev.getDamager()).getItemInHand() != null
-				&& ((Player) ev.getDamager()).getItemInHand().hasItemMeta()
-				&& ((Player) ev.getDamager()).getItemInHand().getItemMeta().hasDisplayName())
+				&& ((Player) ev.getDamager()).getInventory().getItemInMainHand() != null
+				&& ((Player) ev.getDamager()).getInventory().getItemInMainHand().hasItemMeta()
+				&& ((Player) ev.getDamager()).getInventory().getItemInMainHand().getItemMeta().hasDisplayName())
 		{
 			if (SpectatorPlus.get().getPlayerData(((Player) ev.getDamager())).isSpectating())
 			{
-				if (((Player) ev.getDamager()).getItemInHand().getItemMeta().getDisplayName().startsWith(SpectatorsInventoryManager.INSPECTOR_TITLE))
+				if (((Player) ev.getDamager()).getInventory().getItemInMainHand().getItemMeta().getDisplayName().startsWith(SpectatorsInventoryManager.INSPECTOR_TITLE))
 				{
 					handlePunch((Player) ev.getDamager(), (Player) ev.getEntity());
 				}
 				else
 				{
-					handleClick(((Player) ev.getDamager()), ((Player) ev.getDamager()).getItemInHand());
+					handleClick(((Player) ev.getDamager()), ((Player) ev.getDamager()).getInventory().getItemInMainHand());
 				}
 			}
 		}

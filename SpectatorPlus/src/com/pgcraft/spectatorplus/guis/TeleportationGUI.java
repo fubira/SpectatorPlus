@@ -71,10 +71,10 @@ public class TeleportationGUI extends ExplorerGui<Spectator>
 			return GuiUtils.makeItem(Material.AIR);
 
 
-		ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+		ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1);
 		SkullMeta meta = (SkullMeta) head.getItemMeta();
 
-		meta.setOwner(player.getName());
+		meta.setOwningPlayer(player);
 
 		if (sPlayer.isHiddenFromTp())
 			meta.setDisplayName(ChatColor.DARK_GRAY + "[HIDDEN] " + ChatColor.RESET + player.getDisplayName());

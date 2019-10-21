@@ -200,7 +200,7 @@ public class SpectatorsManager
 			Location aboveLobby = spectatorsLobby.clone().add(0, 1, 0);
 			Location belowLobby = spectatorsLobby.clone().add(0, -1, 0);
 
-			while (spectatorsLobby.getBlock().getType() != Material.AIR || aboveLobby.getBlock().getType() != Material.AIR || belowLobby.getBlock().getType() == Material.AIR || belowLobby.getBlock().getType() == Material.LAVA || belowLobby.getBlock().getType() == Material.STATIONARY_LAVA)
+			while (spectatorsLobby.getBlock().getType() != Material.AIR || aboveLobby.getBlock().getType() != Material.AIR || belowLobby.getBlock().getType() == Material.AIR /* || belowLobby.getBlock().getType() == Material.LAVA || belowLobby.getBlock().getType() == Material.STATIONARY_LAVA */)
 			{
 				spectatorsLobby.add(0, 1, 0);
 				aboveLobby.add(0, 1, 0);
@@ -295,7 +295,7 @@ public class SpectatorsManager
 
 			if (Toggles.SPECTATORS_TABLIST_HEALTH.get())
 			{
-				spectatorsScoreboard.registerNewObjective(SPECTATORS_HEALTH_OBJECTIVE_NAME, "health")
+				spectatorsScoreboard.registerNewObjective(SPECTATORS_HEALTH_OBJECTIVE_NAME, "health", "Health")
 						.setDisplaySlot(DisplaySlot.PLAYER_LIST);
 			}
 
@@ -314,7 +314,7 @@ public class SpectatorsManager
 				if (SpectatorPlus.get().getPlayerData(spectator).isSpectating())
 				{
 					spectator.setScoreboard(spectatorsScoreboard);
-					spectatorsTeam.addPlayer(spectator);
+					spectatorsTeam.addEntry(spectator.getName());
 				}
 			}
 		}
@@ -373,9 +373,9 @@ public class SpectatorsManager
 		if (player == null) return;
 
 		if (spectator.isSpectating())
-			spectatorsTeam.addPlayer(player);
+			spectatorsTeam.addEntry(player.getName());
 		else
-			spectatorsTeam.removePlayer(player);
+			spectatorsTeam.removeEntry(player.getName());
 	}
 
 

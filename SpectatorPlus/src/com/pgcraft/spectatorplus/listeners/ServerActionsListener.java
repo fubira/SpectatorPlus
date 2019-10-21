@@ -51,7 +51,7 @@ public class ServerActionsListener implements Listener
 		{
 			if (p.getPlayerData(target).isSpectating())
 			{
-				ev.getPlayer().hidePlayer(target);
+				ev.getPlayer().hidePlayer(p, target);
 			}
 		}
 

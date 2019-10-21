@@ -173,7 +173,7 @@ public class SpectatorsToolsGUI extends ActionGui
 		if (Toggles.TOOLS_TOOLS_NIGHTVISION.get())
 		{
 			ItemStack nightVision = GuiUtils.makeItem(
-					nightVisionActive ? Material.EYE_OF_ENDER : Material.ENDER_PEARL,
+					nightVisionActive ? Material.ENDER_EYE : Material.ENDER_PEARL,
 					nightVisionActive ? ChatColor.DARK_PURPLE + "Disable night vision" : ChatColor.GOLD + "Enable night vision"
 			);
 

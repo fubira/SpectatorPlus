@@ -47,8 +47,8 @@ public class SpectatorsInventoryManager
 	// Items used
 	private static Material TELEPORTER_ITEM, ARENA_SELECTOR_ITEM, TOOLS_ITEM, INSPECTOR_ITEM, LEAVE_ITEM;
 
-	private final static Material QUIT_NOCLIP_ITEM = Material.SKULL_ITEM;
-	private final static Material NIGHT_VISION_ACTIVE_ITEM = Material.EYE_OF_ENDER;
+	private final static Material QUIT_NOCLIP_ITEM = Material.LEGACY_SKULL_ITEM;
+	private final static Material NIGHT_VISION_ACTIVE_ITEM = Material.ENDER_EYE;
 	private final static Material NIGHT_VISION_INACTIVE_ITEM = Material.ENDER_PEARL;
 
 

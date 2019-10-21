@@ -33,7 +33,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 
-@SuppressWarnings("deprecation")
 public final class ConfigAccessor {
 
 	private final String fileName;

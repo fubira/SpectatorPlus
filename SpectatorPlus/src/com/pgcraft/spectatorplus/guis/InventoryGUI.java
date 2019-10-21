@@ -5,6 +5,7 @@
 package com.pgcraft.spectatorplus.guis;
 
 import fr.zcraft.zlib.components.gui.ActionGui;
+
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,7 +24,7 @@ public class InventoryGUI extends ActionGui
 	protected void onUpdate()
 	{
 		setSize(displayedInventory.getSize());
-		setTitle(displayedInventory.getTitle().startsWith("container.") ? displayedInventory.getType().getDefaultTitle() : displayedInventory.getTitle());
+		setTitle(displayedInventory.getType().getDefaultTitle());
 
 		int slot = 0;
 		for (ItemStack stack : displayedInventory)

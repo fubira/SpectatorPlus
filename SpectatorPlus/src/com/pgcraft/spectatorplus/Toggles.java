@@ -77,7 +77,7 @@ public class Toggles
 	// ARENA SELECTOR
 	public static final ConfigurationItem<Boolean> TOOLS_ARENA_SELECTOR_ENABLED = item("tools.arenaChooser.enabled", true, "arenaclock");
 
-	public static final ConfigurationItem<Material> TOOLS_ARENA_SELECTOR_ITEM = item("tools.arenaChooser.item", Material.WATCH, "clockItem");
+	public static final ConfigurationItem<Material> TOOLS_ARENA_SELECTOR_ITEM = item("tools.arenaChooser.item", Material.CLOCK, "clockItem");
 	public static final ConfigurationItem<Boolean> TOOLS_ARENA_SELECTOR_PLAYERS_COUNT = item("tools.arenaChooser.playersCount", true);
 	public static final ConfigurationItem<Boolean> TOOLS_ARENA_SELECTOR_TECH_INFOS = item("tools.arenaChooser.technicalInfos", true);
 
@@ -100,7 +100,7 @@ public class Toggles
 	
 	// LEAVE SPECTATE MODE
 	public static final ConfigurationItem<Boolean> TOOLS_LEAVE_ENABLED = item("tools.leave.enabled", true);
-	public static final ConfigurationItem<Material> TOOLS_LEAVE_ITEM = item("tools.leave.item", Material.BED);
+	public static final ConfigurationItem<Material> TOOLS_LEAVE_ITEM = item("tools.leave.item", Material.RED_BED);
 
 
 	/* Spectators chat */

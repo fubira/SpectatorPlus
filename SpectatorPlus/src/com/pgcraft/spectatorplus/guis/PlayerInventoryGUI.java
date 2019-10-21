@@ -4,10 +4,16 @@
  */
 package com.pgcraft.spectatorplus.guis;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 import com.pgcraft.spectatorplus.utils.RomanNumber;
 import com.pgcraft.spectatorplus.utils.SPUtils;
-import fr.zcraft.zlib.components.gui.ActionGui;
-import fr.zcraft.zlib.components.gui.GuiUtils;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,16 +21,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.Potion;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionType;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import fr.zcraft.zlib.components.gui.ActionGui;
+import fr.zcraft.zlib.components.gui.GuiUtils;
+import fr.zcraft.zlib.tools.items.ItemUtils;
+
 
 
 public class PlayerInventoryGUI extends ActionGui
@@ -53,7 +57,7 @@ public class PlayerInventoryGUI extends ActionGui
 
 		// The separator between the inventory's content and the other player infos.
 
-		final ItemStack separator = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
+		final ItemStack separator = new ItemStack(Material.BLACK_STAINED_GLASS);
 		final ItemMeta separatorMeta = separator.getItemMeta();
 		separatorMeta.setDisplayName(ChatColor.GRAY + "Above: player's inventory");
 		separatorMeta.setLore(Collections.singletonList(ChatColor.GRAY + "Below: armor and others"));
@@ -94,7 +98,7 @@ public class PlayerInventoryGUI extends ActionGui
 
 		// Experience level
 
-		final ItemStack xp = GuiUtils.makeItem(Material.EXP_BOTTLE, ChatColor.GREEN + "" + ChatColor.BOLD + "Experience", Collections.singletonList(
+		final ItemStack xp = GuiUtils.makeItem(Material.EXPERIENCE_BOTTLE, ChatColor.GREEN + "" + ChatColor.BOLD + "Experience", Collections.singletonList(
 				ChatColor.GRAY + "Level " + ChatColor.WHITE + displayedInventoryOwner.getLevel() + ChatColor.GRAY
 						+ " (" + ChatColor.WHITE + ((int) Math.floor(displayedInventoryOwner.getExp() * 100)) + "%" + ChatColor.GRAY + " towards level " + (displayedInventoryOwner.getLevel() + 1) + ")"
 		));
@@ -116,9 +120,11 @@ public class PlayerInventoryGUI extends ActionGui
 		}
 		else
 		{
-			effects = new Potion(PotionType.FIRE_RESISTANCE).toItemStack(1);
+			effects = new ItemStack(Material.POTION, 1);
 			PotionMeta meta = (PotionMeta) effects.getItemMeta();
-
+			meta.setBasePotionData(new PotionData(PotionType.FIRE_RESISTANCE));
+			effects.setItemMeta(meta);
+			
 			meta.setDisplayName(ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "Potion effects");
 
 			List<String> lore = new ArrayList<>();
@@ -136,7 +142,7 @@ public class PlayerInventoryGUI extends ActionGui
 			}
 
 			meta.setLore(lore);
-			GuiUtils.hideItemAttributes(meta);
+			ItemUtils.hideItemAttributes(meta);
 
 			effects.setItemMeta(meta);
 			effects.setAmount(activePotionEffects.size());

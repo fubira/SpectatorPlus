@@ -286,7 +286,9 @@ public class Spectator
 		if (player == null)
 			return;
 
+		PluginLogger.info("disableSpectatorMode");
 
+		
 		// We restore the player: effects, inventory, collisions...
 		player.removePotionEffect(PotionEffectType.INVISIBILITY);
 		player.removePotionEffect(PotionEffectType.SPEED);
@@ -319,10 +321,10 @@ public class Spectator
 			{
 				if (SpectatorPlus.get().getPlayerData(other).isSpectating())
 				{
-					player.hidePlayer(other);
+					player.hidePlayer(p, other);
 				}
 
-				other.showPlayer(player);
+				other.showPlayer(p, player);
 			}
 		}
 

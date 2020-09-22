@@ -8,11 +8,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.pgcraft</groupId>
 	<artifactId>SpectatorPlus</artifactId>
-	<version>B3.0-1.13.2-SNAPSHOT</version>
+	<version>B3.0-1.16.3-SNAPSHOT</version>
 	<name>SpectatorPlus</name>
 	<url>http://github.com/pgmann/spectatorplus</url>
 	<description>This is a Minecraft Bukkit plugin providing an advanced spectator mode; see http://github.com/pgmann/spectatorplus for the source and README.</description>
-
 	<issueManagement>
 		<system>Github Issues</system>
 		<url>http://github.com/pgmann/spectatorplus/issues</url>
@@ -61,12 +60,17 @@
 					<artifactSet>
 						<includes>
 							<include>fr.zcraft:zlib</include>
+							<include>org.apache.commons:*</include>
 						</includes>
 					</artifactSet>
 					<relocations>
 						<relocation>
 							<pattern>fr.zcraft.zlib</pattern>
 							<shadedPattern>com.pgcraft.spectatorplus.zlib</shadedPattern>
+						</relocation>
+						<relocation>
+							<pattern>org.apache.commons</pattern>
+							<shadedPattern>com.pgcraft.spectatorplus.org.apache.commons</shadedPattern>
 						</relocation>
 					</relocations>
 				</configuration>
@@ -91,19 +95,20 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>1.13.2-R0.1-SNAPSHOT</version>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
+			<version>1.16.3-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
+			<version>3.11</version>
 		</dependency>
 		<dependency>
 			<groupId>fr.zcraft</groupId>
 			<artifactId>zlib</artifactId>
-			<version>1.13.2-SNAPSHOT-2</version>
+			<version>0.99-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

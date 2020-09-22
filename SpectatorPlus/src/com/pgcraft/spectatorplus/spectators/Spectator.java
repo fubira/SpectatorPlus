@@ -29,6 +29,7 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import fr.zcraft.zlib.components.gui.Gui;
 import fr.zcraft.zlib.tools.players.ReducedDebugInfo;
+import fr.zcraft.zlib.tools.PluginLogger;
 
 public class Spectator
 {

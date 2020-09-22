@@ -7,7 +7,7 @@ package com.pgcraft.spectatorplus.arenas;
 import com.pgcraft.spectatorplus.SpectatorPlus;
 import com.pgcraft.spectatorplus.spectators.Spectator;
 import fr.zcraft.zlib.tools.PluginLogger;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

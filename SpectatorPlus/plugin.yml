@@ -1,7 +1,7 @@
 name: SpectatorPlus
 main: com.pgcraft.spectatorplus.SpectatorPlus
-version: '3.0-1.13.2'
-api-version: '1.13'
+version: '3.0-1.16.3'
+api-version: '1.16'
 description: "Lets players spectate other competitors in events, games, etc. when they're not playing. Allows them to fly but stops them helping other players. Do [/spec help] for help!"
 author: pgmann
 authors: ["AmauryPi"]
